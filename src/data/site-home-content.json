@@ -78,8 +78,8 @@
     },
     "reviews": {
       "score": "4.8",
-      "ratingCount": "+2,450 valoraciones en Amazon",
-      "logo": "/images/home/amazon-reviews-logo.png"
+      "ratingCount": "+2,450 valoraciones en",
+      "logo": "/images/home/amazon.png"
     },
     "storeLocator": {
       "tag": "PUNTOS DE VENTA",
@@ -194,8 +194,8 @@
     },
     "reviews": {
       "score": "4.8",
-      "ratingCount": "+2,450 reviews on Amazon",
-      "logo": "/images/home/amazon-reviews-logo.png"
+      "ratingCount": "+2,450 reviews on",
+      "logo": "/images/home/amazon.png"
     },
     "storeLocator": {
       "tag": "LOCATIONS",

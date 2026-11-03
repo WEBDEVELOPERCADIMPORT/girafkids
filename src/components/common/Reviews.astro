@@ -45,20 +45,24 @@ const t = (homeContent[lang] ?? homeContent.es).reviews;
             ))}
           </div>
 
-          <!-- Texto de Valoraciones en Amazon -->
-          <span class="text-xs text-[#8F6F5B] font-semibold">
-            {t.ratingCount || "+2,450 valoraciones en Amazon"}
-          </span>
+          <!-- Texto de Valoraciones con Logo de Amazon en lugar de texto escrito -->
+          <div class="flex items-center gap-1.5 text-xs text-[#8F6F5B] font-semibold">
+            <span>{t.ratingCount}</span>
+            <img
+              src="/images/home/amazon.png"
+              alt="Amazon"
+              class="h-3.5 sm:h-4 w-auto object-contain inline-block"
+            />
+          </div>
         </div>
       </div>
 
-      <!-- Bloque Derecho: Imagen Oficial de Amazon Reviews -->
+      <!-- Bloque Derecho: Imagen Oficial de Amazon -->
       <div class="flex items-center">
         <img
-          src={t.logo || "/images/home/amazon-reviews-logo.png"}
+          src="/images/home/amazon.png"
           alt="Amazon Reviews"
-          class="h-10 sm:h-12 w-auto object-contain"
-          onerror="this.src='/images/home/amazon-reviews-logo.svg'"
+          class="h-9 sm:h-12 w-auto object-contain"
         />
       </div>
 
@@ -131,13 +135,13 @@ const t = (homeContent[lang] ?? homeContent.es).reviews;
               </p>
             </div>
 
-            <!-- Miniatura Jirafa en esquina inferior -->
+            <!-- Jirafa en esquina inferior del comentario (más grande) -->
             <div class="mt-6 pt-3 border-t border-[#F8EFE7] flex justify-end">
               <img
-                src="/images/home/giraffe-winter.png"
+                src="/images/home/giraffe-coment.png"
                 alt="Girafkids"
-                class="w-7 h-7 object-contain opacity-75 hover:opacity-100 transition-opacity"
-                onerror="this.src='/images/home/giraffe-winter.svg'"
+                class="w-16 h-16 sm:w-20 sm:h-20 object-contain hover:scale-105 transition-transform drop-shadow-xs"
+                onerror="this.src='/images/home/giraffe-winter.png'"
               />
             </div>
 
