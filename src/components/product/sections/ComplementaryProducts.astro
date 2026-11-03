@@ -1,0 +1,103 @@
+---
+import type { Lang } from "../../../i18n/config.i18n";
+import productContent from "../../../data/site-product-content.json";
+import type { LocalizedProductItem } from "../../../actions/products/getProducts.action";
+
+interface Props {
+  lang: Lang;
+  currentSlug: string;
+  allProducts: LocalizedProductItem[];
+}
+
+const { lang, currentSlug, allProducts } = Astro.props;
+const t = (productContent[lang] ?? productContent.es).complementary;
+
+// Excluir el producto actual y mostrar hasta 3 productos complementarios
+const relatedProducts = allProducts.filter((p) => p.slug !== currentSlug).slice(0, 3);
+---
+
+<section class="py-16 sm:py-24 bg-gradient-to-b from-[#FFFBF2] to-[#FFF7ED] border-t border-[#F3E5CE]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Encabezado con Enlace Lateral a Amazon -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4 pb-4 border-b border-[#F3E5CE]">
+      <div class="space-y-1">
+        <span class="text-xs font-black uppercase tracking-wider text-[#EA580C]">
+          {t.tag}
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-black text-[#3D2314] tracking-tight">
+          {t.title}
+        </h2>
+        <p class="text-xs sm:text-sm text-[#694A38]">
+          {t.subtitle}
+        </p>
+      </div>
+
+      <a
+        href={t.amazonCatalogUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 text-xs font-black text-[#EA580C] hover:text-[#9A3412] transition-colors"
+      >
+        <span>{t.amazonCatalogText}</span>
+      </a>
+    </div>
+
+    <!-- Grid de 3 Productos Relacionados (Sin Estrellas ni Thumbnails) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      {relatedProducts.map((product) => {
+        const imageSrc = (product.images && product.images[0]) || product.image;
+
+        return (
+          <div class="group flex flex-col justify-between rounded-[28px] bg-white border border-[#F3E5CE] p-6 shadow-[0_4px_20px_rgba(232,93,4,0.04)] hover:shadow-[0_12px_32px_rgba(232,93,4,0.1)] transition-all duration-300 hover:-translate-y-1">
+            
+            <div>
+              <!-- Imagen del Producto -->
+              <a href={`/${lang}/products/${product.slug}`} class="block relative aspect-[4/5] rounded-2xl bg-[#FFFDF8] border border-[#FDE8D7]/60 p-4 mb-5 overflow-hidden flex items-center justify-center">
+                <img
+                  src={imageSrc}
+                  alt={product.name}
+                  class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                  onerror="this.src='/images/products/immune-support.svg'"
+                />
+              </a>
+
+              <!-- Nombre -->
+              <h3 class="text-base font-black text-[#3D2314] mb-2 leading-snug group-hover:text-[#EA580C] transition-colors">
+                <a href={`/${lang}/products/${product.slug}`}>
+                  {product.name}
+                </a>
+              </h3>
+
+              <!-- Descripción -->
+              <p class="text-xs text-[#694A38] leading-relaxed line-clamp-2 mb-6">
+                {product.description}
+              </p>
+            </div>
+
+            <!-- Botones -->
+            <div class="space-y-2 pt-2 border-t border-[#F8EFE7]">
+              <a
+                href={product.amazonUrl || "https://www.amazon.com"}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full inline-flex items-center justify-center px-4 py-3 rounded-full bg-[#EA580C] text-white font-black text-xs shadow-md hover:bg-[#D9480F] transition-all text-center"
+              >
+                {(productContent[lang] ?? productContent.es).labels.buyOnAmazon}
+              </a>
+
+              <a
+                href={`/${lang}/products/${product.slug}`}
+                class="w-full inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-[#7C533D] hover:text-[#EA580C] transition-colors text-center"
+              >
+                {(productContent[lang] ?? productContent.es).labels.viewDetails}
+              </a>
+            </div>
+
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

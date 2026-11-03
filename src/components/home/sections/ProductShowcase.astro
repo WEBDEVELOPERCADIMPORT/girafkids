@@ -1,0 +1,270 @@
+---
+import type { Lang } from "../../../i18n/config.i18n";
+import homeContent from "../../../data/site-home-content.json";
+import type { LocalizedProductItem } from "../../../actions/products/getProducts.action";
+
+interface Props {
+  lang: Lang;
+  products: LocalizedProductItem[];
+}
+
+const { lang, products } = Astro.props;
+const t = (homeContent[lang] ?? homeContent.es).productShowcase;
+---
+
+<section id="productos" class="py-16 sm:py-24 bg-gradient-to-b from-[#FFFBF2] via-[#FFF8EE] to-[#FFFBF2]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Encabezado con Mascota Jirafa a la derecha -->
+    <div class="flex items-center justify-between mb-10 pb-4 border-b border-[#F3E5CE]">
+      <div class="space-y-1">
+        <span class="text-xs font-black uppercase tracking-wider text-[#EA580C]">
+          {t.tag}
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-black text-[#3D2314] tracking-tight">
+          {t.title}
+        </h2>
+      </div>
+
+      <!-- Mascota Jirafa saludando -->
+      <div class="relative shrink-0 w-20 sm:w-40 h-20 sm:h-40 ">
+        <img
+          src="/images/home/giraffe-apenada.png"
+          alt="Jirafa Girafkids"
+          class="w-full h-full object-contain filter drop-shadow-md hover:rotate-6 transition-transform"
+          onerror="this.src='/images/home/giraffe-winter.svg'"
+        />
+      </div>
+    </div>
+
+    <!-- Carrusel Horizontal de Productos -->
+    <div class="relative group products-carousel-container w-full">
+      
+      <!-- Botón Anterior Naranja -->
+      <button
+        type="button"
+        class="products-prev-btn absolute left-1 sm:left-2 lg:-left-6 top-1/2 -translate-y-1/2 -ml-2 lg:-ml-6 z-20 bg-white rounded-full p-3 shadow-[0_4px_16px_rgba(232,93,4,0.18)] text-[#EA580C] hover:bg-[#FFF7ED] hover:scale-105 transition-all focus:outline-none border border-[#F3E5CE]"
+        aria-label="Anterior Producto"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <!-- Track Horizontal de Desplazamiento -->
+      <div class="products-track w-full flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 pt-2 px-1 no-scrollbar scroll-smooth">
+        {products.map((product) => {
+          const imageList = product.images && product.images.length > 0 ? product.images : [product.image || ""];
+
+          return (
+            <div class="product-card snap-start shrink-0 w-[290px] sm:w-[320px] md:w-[340px] rounded-[28px] bg-white border border-[#FDE3B8] p-5 sm:p-6 shadow-[0_4px_24px_rgba(232,93,4,0.04)] hover:shadow-[0_12px_32px_rgba(232,93,4,0.1)] transition-all duration-300 flex flex-col justify-between">
+              
+              <div>
+                <!-- Mini Carrusel de la lista de Imágenes del Producto -->
+                <div class="relative product-image-carousel w-full rounded-[20px] bg-[#FFFDF7] border border-[#FDE8D7]/60 h-64 sm:h-72 p-4 flex items-center justify-center overflow-hidden group/img mb-4">
+                  
+                  <!-- Imagen Activa -->
+                  <a href={`/${lang}/products/${product.slug}`} class="block w-full h-full flex items-center justify-center">
+                    <img
+                      src={imageList[0]}
+                      alt={product.name}
+                      class="product-current-image w-full h-full object-contain filter drop-shadow-md transition-all duration-300 group-hover/img:scale-105"
+                      data-images={JSON.stringify(imageList)}
+                      data-index="0"
+                      onerror="this.src='/images/products/multi-vitamin-liquido.svg'"
+                    />
+                  </a>
+
+                  <!-- Controles discretos si tiene más de 1 imagen en la lista -->
+                  {imageList.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        class="img-prev-btn absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white/90 text-[#EA580C] shadow-md flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity hover:bg-white focus:outline-none z-10 font-bold"
+                        aria-label="Imagen anterior"
+                      >
+                        ‹
+                      </button>
+                      <button
+                        type="button"
+                        class="img-next-btn absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white/90 text-[#EA580C] shadow-md flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity hover:bg-white focus:outline-none z-10 font-bold"
+                        aria-label="Siguiente imagen"
+                      >
+                        ›
+                      </button>
+                      
+                      <!-- Puntos indicadores inferiores -->
+                      <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-black/15 backdrop-blur-sm px-2.5 py-1 rounded-full z-10">
+                        {imageList.map((_, idx) => (
+                          <span
+                            class={`img-dot w-1.5 h-1.5 rounded-full transition-all ${
+                              idx === 0 ? "bg-[#EA580C] w-3" : "bg-white/70"
+                            }`}
+                          ></span>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                <!-- Nombre del Producto (Sin Estrellas) -->
+                <h3 class="text-lg sm:text-xl font-black text-[#3D2314] leading-snug mb-2 group-hover:text-[#EA580C] transition-colors">
+                  <a href={`/${lang}/products/${product.slug}`}>
+                    {product.name}
+                  </a>
+                </h3>
+
+                <!-- Descripción con Ver más / Ver menos -->
+                <div class="product-desc-wrapper mb-6">
+                  <p class="product-desc-text text-xs sm:text-sm text-[#694A38] leading-relaxed line-clamp-2 transition-all">
+                    {product.description}
+                  </p>
+                  <button
+                    type="button"
+                    class="desc-toggle-btn text-xs font-bold text-[#EA580C] hover:text-[#C2410C] hover:underline mt-1 focus:outline-none transition-colors inline-flex items-center gap-1 cursor-pointer"
+                    data-more={t.seeMore}
+                    data-less={t.seeLess}
+                  >
+                    <span>{t.seeMore}</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Botones Idénticos a la Imagen de Referencia -->
+              <div class="space-y-2.5 pt-2">
+                <!-- Botón 1: Ver en Amazon ↗ (Naranja Sólido) -->
+                <a
+                  href={product.amazonUrl || "https://www.amazon.com"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-full inline-flex items-center justify-center px-4 py-3 rounded-[16px] bg-[#E85D04] hover:bg-[#D9480F] text-white font-black text-xs sm:text-sm shadow-sm hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 text-center"
+                >
+                  <span>{t.ctaAmazon}</span>
+                </a>
+
+                <!-- Botón 2: Ver detalles (Fondo Crema / Mantequilla Suave) -->
+                <a
+                  href={`/${lang}/products/${product.slug}`}
+                  class="w-full inline-flex items-center justify-center px-4 py-3 rounded-[16px] bg-[#FEF3C7] hover:bg-[#FDE68A] text-[#7C2D12] font-black text-xs sm:text-sm shadow-sm transition-all duration-200 text-center"
+                >
+                  <span>{t.ctaDetails}</span>
+                </a>
+              </div>
+
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Botón Siguiente Naranja -->
+      <button
+        type="button"
+        class="products-next-btn absolute right-1 sm:right-2 lg:-right-6 top-1/2 -translate-y-1/2 -mr-2 lg:-mr-6 z-20 bg-white rounded-full p-3 shadow-[0_4px_16px_rgba(232,93,4,0.18)] text-[#EA580C] hover:bg-[#FFF7ED] hover:scale-105 transition-all focus:outline-none border border-[#F3E5CE]"
+        aria-label="Siguiente Producto"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function setupProductsShowcase() {
+    const containers = document.querySelectorAll(".products-carousel-container");
+
+    containers.forEach((container) => {
+      // 1. Carrusel Horizontal Principal de Productos
+      const track = container.querySelector(".products-track");
+      const prevBtn = container.querySelector(".products-prev-btn");
+      const nextBtn = container.querySelector(".products-next-btn");
+
+      if (track && prevBtn && nextBtn) {
+        const scrollAmount = 340;
+
+        prevBtn.addEventListener("click", () => {
+          track.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+        });
+
+        nextBtn.addEventListener("click", () => {
+          track.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        });
+      }
+
+      // 2. Mini Carrusel de la lista de imágenes por cada Producto
+      const imageCarousels = container.querySelectorAll(".product-image-carousel");
+
+      imageCarousels.forEach((imgCarousel) => {
+        const img = imgCarousel.querySelector(".product-current-image") as HTMLImageElement | null;
+        const prevImgBtn = imgCarousel.querySelector(".img-prev-btn");
+        const nextImgBtn = imgCarousel.querySelector(".img-next-btn");
+        const dots = imgCarousel.querySelectorAll(".img-dot");
+
+        if (!img || !prevImgBtn || !nextImgBtn) return;
+
+        let images: string[] = [];
+        try {
+          images = JSON.parse(img.dataset.images || "[]");
+        } catch {
+          images = [img.src];
+        }
+
+        if (images.length <= 1) return;
+
+        let currentIndex = 0;
+
+        const updateImage = (newIndex: number) => {
+          currentIndex = (newIndex + images.length) % images.length;
+          img.src = images[currentIndex];
+
+          dots.forEach((dot, idx) => {
+            if (idx === currentIndex) {
+              dot.classList.add("bg-[#EA580C]", "w-3");
+              dot.classList.remove("bg-white/70");
+            } else {
+              dot.classList.remove("bg-[#EA580C]", "w-3");
+              dot.classList.add("bg-white/70");
+            }
+          });
+        };
+
+        prevImgBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          updateImage(currentIndex - 1);
+        });
+
+        nextImgBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          updateImage(currentIndex + 1);
+        });
+      });
+
+      // 3. Toggle de descripción Ver más / Ver menos
+      const descWrappers = container.querySelectorAll(".product-desc-wrapper");
+      descWrappers.forEach((wrapper) => {
+        const text = wrapper.querySelector(".product-desc-text");
+        const btn = wrapper.querySelector(".desc-toggle-btn");
+        const span = btn?.querySelector("span");
+
+        if (!text || !btn || !span) return;
+
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const isClamped = text.classList.toggle("line-clamp-2");
+          span.textContent = isClamped
+            ? (btn.getAttribute("data-more") || "Ver más")
+            : (btn.getAttribute("data-less") || "Ver menos");
+        });
+      });
+    });
+  }
+
+  setupProductsShowcase();
+  document.addEventListener("astro:page-load", setupProductsShowcase);
+</script>

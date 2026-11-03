@@ -1,0 +1,234 @@
+{
+  "es": {
+    "brandName": "Girafkids® - Suplementos Infantiles para Invierno",
+    "meta": {
+      "title": "Girafkids® - Suplementos y Vitaminas Infantiles de Grado Pediátrico",
+      "description": "Fórmulas líquidas de alta absorción con Vitamina C, Zinc, Complejo B y Beta Glucano para cuidar a tus pequeños este invierno."
+    },
+    "hero": {
+      "bgImage": "/images/home/bg-children.png",
+      "cardBgImage": "/images/home/bg-card-action.png",
+      "giraffeImage": "/images/home/giraffe-hero.png",
+      "headingLine1": "LO QUE NECESITAN",
+      "headingLine2": "A DIARIO",
+      "headingHighlight": "PARA UN CRECIMIENTO FELIZ.",
+      "taglineLine1": "Vitaminas y suplementos",
+      "taglineLine2": "esenciales.",
+      "primaryCta": "Comprar en Amazon",
+      "primaryCtaUrl": "https://www.amazon.com",
+      "secondaryCta": "Explorar catálogo ↓",
+      "secondaryCtaUrl": "#productos"
+    },
+    "trustReasons": {
+      "titleBefore": "5 razones para confiar en",
+      "titleHighlight": "Girafkids",
+      "titleAfter": "este invierno",
+      "subtitle": "Cuidado infantil integral y defensas reforzadas para que sigan jugando sin interrupciones.",
+      "featuredCard": {
+        "number": "01",
+        "badge": "NUTRICIÓN PURA",
+        "title": "Fórmula de Calidad Superior",
+        "desc": "Nutrientes pediátricos de alta pureza diseñados meticulosamente para lograr una máxima asimilación celular y una digestión sumamente suave.",
+        "featureTag": "Biodisponible & Suave",
+        "gradeTag": "Grado Premium"
+      },
+      "items": [
+        {
+          "number": "02",
+          "title": "Sabor Amigable",
+          "desc": "Sabor suave a frutas naturales que encanta a los niños sin provocar batallas innecesarias por la mañana.",
+          "tag": "Aprobado por niños",
+          "icon": "smile"
+        },
+        {
+          "number": "03",
+          "title": "Absorción Óptima",
+          "desc": "Presentación líquida que permite una asimilación más rápida y directa en el organismo de los más pequeños.",
+          "tag": "Formato líquido eficaz",
+          "icon": "flash"
+        },
+        {
+          "number": "04",
+          "title": "Calidad Certificada",
+          "desc": "Elaborado bajo rigurosos controles pediátricos en laboratorios certificados cGMP y pureza comprobada.",
+          "tag": "Estándar cGMP",
+          "icon": "shield"
+        },
+        {
+          "number": "05",
+          "title": "Cero Azúcar Añadida",
+          "desc": "Fórmula limpia y saludable sin azúcares refinados, colorantes artificiales ni gluten.",
+          "tag": "100% Sin Gluten ni Azúcar",
+          "icon": "sparkle"
+        }
+      ]
+    },
+    "productShowcase": {
+      "tag": "CUIDADO DIARIO",
+      "title": "Suplementos para su bienestar",
+      "seeMore": "Ver más",
+      "seeLess": "Ver menos",
+      "ctaAmazon": "Ver en Amazon ↗",
+      "ctaDetails": "Ver detalles"
+    },
+    "kidsEnergyBanner": {
+      "image": "/images/home/banner-children.png",
+      "titleLine1": "SALUD PARA LOS MÁS",
+      "titleHighlight": "PEQUEÑOS."
+    },
+    "reviews": {
+      "score": "4.8",
+      "ratingCount": "+2,450 valoraciones en Amazon",
+      "logo": "/images/home/amazon-reviews-logo.png"
+    },
+    "storeLocator": {
+      "tag": "PUNTOS DE VENTA",
+      "title": "Encuentra Girafkids en Farmacias",
+      "subtitle": "Visita nuestras farmacias y tiendas aliadas más cercanas a tu ubicación.",
+      "searchLabel": "Buscar farmacia cercana",
+      "searchPlaceholder": "Código ZIP (ej. 77500, 77710, 77780, 77400)",
+      "searchButton": "Buscar",
+      "allStoresLabel": "Todas las sucursales disponibles",
+      "noResults": "No se encontraron sucursales exactas para este código postal. Te mostramos las farmacias disponibles en la región:",
+      "directions": "Cómo llegar"
+    },
+    "faq": {
+      "tag": "RESOLVEMOS TUS DUDAS",
+      "title": "Preguntas Frecuentes",
+      "items": [
+        {
+          "question": "¿A partir de qué edad pueden tomar Girafkids?",
+          "answer": "Nuestras fórmulas líquidas están recomendadas para niños a partir de los 2 años. Siempre sugerimos consultar con su pediatra para adecuar la dosis específica según su etapa de desarrollo."
+        },
+        {
+          "question": "¿Contienen azúcar refinada o colorantes artificiales?",
+          "answer": "No. Todos los productos Girafkids están completamente libres de azúcar refinada añadida, gluten y colorantes artificiales. Tienen un delicioso sabor natural a melocotón o naranja."
+        },
+        {
+          "question": "¿Cómo se deben conservar los productos?",
+          "answer": "Una vez abiertos los frascos de solución líquida, recomendamos mantenerlos refrigerados para preservar al 100% la pureza de sus nutrientes y consumirlos dentro de los 60 días."
+        },
+        {
+          "question": "¿Dónde se fabrican y qué certificaciones poseen?",
+          "answer": "Girafkids se elabora en laboratorios certificados bajo normativas cGMP en Estados Unidos, cumpliendo con los estándares pediátricos de seguridad y control de alérgenos de la FDA."
+        }
+      ]
+    }
+  },
+  "en": {
+    "brandName": "Girafkids® - Winter Children's Supplements",
+    "meta": {
+      "title": "Girafkids® - Pediatric Grade Children's Supplements & Vitamins",
+      "description": "High absorption liquid formulas with Vitamin C, Zinc, B-Complex and Beta Glucan to protect your kids this winter."
+    },
+    "hero": {
+      "bgImage": "/images/home/bg-children.png",
+      "cardBgImage": "/images/home/bg-card-action.png",
+      "giraffeImage": "/images/home/giraffe-hero.png",
+      "headingLine1": "WHAT THEY NEED",
+      "headingLine2": "DAILY",
+      "headingHighlight": "FOR HAPPY GROWTH.",
+      "taglineLine1": "Essential Vitamins and",
+      "taglineLine2": "Supplements.",
+      "primaryCta": "Buy on Amazon",
+      "primaryCtaUrl": "https://www.amazon.com",
+      "secondaryCta": "Explore catalog ↓",
+      "secondaryCtaUrl": "#productos"
+    },
+    "trustReasons": {
+      "titleBefore": "5 reasons to trust",
+      "titleHighlight": "Girafkids",
+      "titleAfter": "this winter",
+      "subtitle": "Comprehensive child care and boosted defenses so they keep playing without pause.",
+      "featuredCard": {
+        "number": "01",
+        "badge": "PURE NUTRITION",
+        "title": "Superior Quality Formula",
+        "desc": "High-purity pediatric nutrients meticulously designed for maximum cellular uptake and exceptionally gentle digestion.",
+        "featureTag": "Bioavailable & Gentle",
+        "gradeTag": "Premium Grade"
+      },
+      "items": [
+        {
+          "number": "02",
+          "title": "Kid-Friendly Flavor",
+          "desc": "Mild natural fruit flavor that kids love without unnecessary morning struggles.",
+          "tag": "Kid-approved",
+          "icon": "smile"
+        },
+        {
+          "number": "03",
+          "title": "Optimal Absorption",
+          "desc": "Liquid presentation that allows faster and more direct uptake in children's bodies.",
+          "tag": "Effective liquid format",
+          "icon": "flash"
+        },
+        {
+          "number": "04",
+          "title": "Certified Quality",
+          "desc": "Manufactured under strict pediatric controls in cGMP certified laboratories with tested purity.",
+          "tag": "cGMP Standard",
+          "icon": "shield"
+        },
+        {
+          "number": "05",
+          "title": "Zero Added Sugar",
+          "desc": "Clean and wholesome formula without refined sugars, artificial dyes, or gluten.",
+          "tag": "100% Gluten & Sugar Free",
+          "icon": "sparkle"
+        }
+      ]
+    },
+    "productShowcase": {
+      "tag": "DAILY CARE",
+      "title": "Supplements for their wellness",
+      "seeMore": "Read more",
+      "seeLess": "Read less",
+      "ctaAmazon": "See on Amazon ↗",
+      "ctaDetails": "See details"
+    },
+    "kidsEnergyBanner": {
+      "image": "/images/home/banner-children.png",
+      "titleLine1": "HEALTH FOR THE LITTLE",
+      "titleHighlight": "ONES."
+    },
+    "reviews": {
+      "score": "4.8",
+      "ratingCount": "+2,450 reviews on Amazon",
+      "logo": "/images/home/amazon-reviews-logo.png"
+    },
+    "storeLocator": {
+      "tag": "LOCATIONS",
+      "title": "Find Girafkids in Pharmacies",
+      "subtitle": "Visit our partner pharmacies and retail stores closest to you.",
+      "searchLabel": "Search nearby pharmacy",
+      "searchPlaceholder": "ZIP Code (e.g. 77500, 77710, 77780, 77400)",
+      "searchButton": "Search",
+      "allStoresLabel": "All available partner stores",
+      "noResults": "No direct stores found for this postal code. Showing regional pharmacies:",
+      "directions": "Get Directions"
+    },
+    "faq": {
+      "tag": "WE ANSWER YOUR QUESTIONS",
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "From what age can children take Girafkids?",
+          "answer": "Our liquid formulas are recommended for children 2 years and older. We always suggest checking with your pediatrician for specific dosages tailored to each developmental stage."
+        },
+        {
+          "question": "Do they contain refined sugar or artificial colorants?",
+          "answer": "No. All Girafkids products are completely free from added refined sugar, gluten, and artificial food colorings. They feature delicious natural flavors like peach and orange."
+        },
+        {
+          "question": "How should products be stored?",
+          "answer": "Once opened, liquid solution bottles should be kept refrigerated to maintain 100% nutrient freshness and consumed within 60 days of opening."
+        },
+        {
+          "question": "Where are they made and what certifications do they hold?",
+          "answer": "Girafkids is produced in cGMP certified laboratories in the United States, adhering strictly to pediatric safety and allergen control standards under FDA regulations."
+        }
+      ]
+    }
+  }
+}

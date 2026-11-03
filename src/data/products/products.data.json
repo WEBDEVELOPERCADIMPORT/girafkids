@@ -1,0 +1,248 @@
+{
+  "products": {
+    "es": [
+      {
+        "id": "1",
+        "slug": "multi-vitamin-liquido",
+        "sku": "18-0308",
+        "name": "Multi Vitamin Liquid",
+        "description": "Refuerzo diario para los meses fríos formulado con Complejo B, Biotina, Omega 3 y Beta Glucano. Absorción rápida y deliciosa que los niños adoran tomar sin complicaciones por las mañanas.",
+        "bullets": [
+          "Defensas activas: Beta Glucano y nutrientes para cambios de temperatura en invierno.",
+          "Fórmula líquida: Absorción más inmediata y sin complicaciones para tragar.",
+          "Cero azúcar añadida: Sabor suave a melocotón que evita batallas por la mañana."
+        ],
+        "details": [
+          {
+            "title": "Modo de uso & Dosis",
+            "content": "Niños 2 a 4 años: 1 cucharadita (5 ml) al día con el desayuno. Niños de 4 a 12 años: 2 cucharaditas (10 ml) al día directo o en jugo. Tip de invierno: Agitar bien antes de cada toma. Mantener refrigerado tras abrir.",
+            "icon": "usage"
+          },
+          {
+            "title": "Ingredientes Clave",
+            "content": "Complejo B (B1, B2, B6, B12), Biotina pura, Beta Glucano de levadura natural, Vitamina D3, Zinc quelado, extracto natural de melocotón.",
+            "icon": "ingredients"
+          }
+        ],
+        "images": [
+          "/images/products/multi-vitamin-liquido.png",
+          "/images/products/multi-vitamin-liquido.svg",
+          "/images/home/giraffe-winter.png"
+        ],
+        "amazonUrl": "https://www.amazon.com/dp/B0EXAMPLE1"
+      },
+      {
+        "id": "2",
+        "slug": "immune-support",
+        "sku": "18-0309",
+        "name": "Immune Support 500mg",
+        "description": "Vitamina C y Zinc líquido sabor Naranja para escudo inmunológico en época de frío. Concentrado de alta biodisponibilidad que fortalece las barreras naturales de los más pequeños.",
+        "bullets": [
+          "Escudo Inmune: Dosis pediátrica de Vitamina C y Zinc para proteger en días helados.",
+          "Fácil ingestión: Textura suave y sabor cítrico natural amado por los pequeños.",
+          "Acción Rápida: Biodisponibilidad superior gracias a su presentación líquida."
+        ],
+        "details": [
+          {
+            "title": "Modo de uso & Dosis",
+            "content": "Niños a partir de 2 años: 1 cucharadita (5 ml) al día. Agitar antes de usar.",
+            "icon": "usage"
+          },
+          {
+            "title": "Ingredientes Clave",
+            "content": "Ácido Ascórbico (Vitamina C), Gluconato de Zinc, extracto de saúco y sabor naranja natural.",
+            "icon": "ingredients"
+          }
+        ],
+        "images": [
+          "/images/products/immune-support.png",
+          "/images/products/immune-support.svg",
+          "/images/home/giraffe-winter.png"
+        ],
+        "amazonUrl": "https://www.amazon.com/dp/B0EXAMPLE2"
+      },
+      {
+        "id": "3",
+        "slug": "boosts-appetite",
+        "sku": "18-0310",
+        "name": "Boosts Appetite",
+        "description": "Con L-Lisina y Complejo B para apoyar un apetito sano y energía durante el invierno. Enriquecido con Inositol y Calcio para un crecimiento activo y juego saludable.",
+        "bullets": [
+          "Estimula el apetito: Aminoácido esencial L-Lisina para etapas de crecimiento y juego.",
+          "Vitalidad diaria: Complejo B que transforma los alimentos en energía constante.",
+          "Sabor a frutas: Delicioso y sin sensación amarga."
+        ],
+        "details": [
+          {
+            "title": "Modo de uso & Dosis",
+            "content": "Tomar 5 ml 15 minutos antes de la comida principal. Niños de 3 a 12 años.",
+            "icon": "usage"
+          },
+          {
+            "title": "Ingredientes Clave",
+            "content": "L-Lisina HCl, Vitamina B1, B6, B12, extracto de malta vegetal y néctar frutal.",
+            "icon": "ingredients"
+          }
+        ],
+        "images": [
+          "/images/products/boosts-appetite.png",
+          "/images/products/boosts-appetite.svg",
+          "/images/home/giraffe-winter.png"
+        ],
+        "amazonUrl": "https://www.amazon.com/dp/B0EXAMPLE3"
+      },
+      {
+        "id": "4",
+        "slug": "super-vitamins",
+        "sku": "18-0311",
+        "name": "Super Vitamins Viales",
+        "description": "Viales bebibles con Jalea Real y 12 vitaminas completas. Prácticos para la lonchera en invierno, proporcionando vitalidad activa y defensas escolares sin necesidad de agua.",
+        "bullets": [
+          "12 Vitaminas completas: Cobertura total de micronutrientes para el día a día escolar.",
+          "Jalea Real purificada: Fuente natural de nutrientes energéticos y antioxidantes.",
+          "Formato vial seguro: Listo para beber sin derrames ni preparaciones complicadas."
+        ],
+        "details": [
+          {
+            "title": "Modo de uso & Dosis",
+            "content": "1 vial al día por la mañana antes del colegio. Agitar y abrir girando la tapa.",
+            "icon": "usage"
+          },
+          {
+            "title": "Ingredientes Clave",
+            "content": "Jalea Real fresca liofilizada, Vitaminas A, C, D3, E, Complejo B y Magnesio.",
+            "icon": "ingredients"
+          }
+        ],
+        "images": [
+          "/images/products/super-vitamins.png",
+          "/images/products/super-vitamins.svg",
+          "/images/home/giraffe-winter.png"
+        ],
+        "amazonUrl": "https://www.amazon.com/dp/B0EXAMPLE4"
+      }
+    ],
+    "en": [
+      {
+        "id": "1",
+        "slug": "multi-vitamin-liquido",
+        "sku": "18-0308",
+        "name": "Multi Vitamin Liquid",
+        "description": "Daily reinforcement for cold months formulated with B-Complex, Biotin, Omega 3 and Beta Glucan. Fast and delicious liquid absorption children love without morning battles.",
+        "bullets": [
+          "Active defenses: Beta Glucan and nutrients for winter temperature changes.",
+          "Liquid formula: Instant absorption and trouble-free swallowing for kids.",
+          "Zero added sugar: Gentle peach flavor avoiding morning battles."
+        ],
+        "details": [
+          {
+            "title": "Directions & Dosage",
+            "content": "Children 2 to 4 years: 1 teaspoon (5 ml) daily with breakfast. Children 4 to 12 years: 2 teaspoons (10 ml) daily directly or mixed with juice. Winter tip: Shake well before each use. Keep refrigerated after opening.",
+            "icon": "usage"
+          },
+          {
+            "title": "Key Ingredients",
+            "content": "B-Complex (B1, B2, B6, B12), pure Biotin, natural yeast Beta Glucan, Vitamin D3, chelated Zinc, natural peach extract.",
+            "icon": "ingredients"
+          }
+        ],
+        "images": [
+          "/images/products/multi-vitamin-liquido.png",
+          "/images/products/multi-vitamin-liquido.svg",
+          "/images/home/giraffe-winter.png"
+        ],
+        "amazonUrl": "https://www.amazon.com/dp/B0EXAMPLE1"
+      },
+      {
+        "id": "2",
+        "slug": "immune-support",
+        "sku": "18-0309",
+        "name": "Immune Support 500mg",
+        "description": "Liquid Vitamin C and Zinc Orange flavor for immune protection during cold weather. Highly bioavailable concentrate that strengthens the natural barriers of the little ones.",
+        "bullets": [
+          "Immune Shield: Pediatric dose of Vitamin C and Zinc to protect during chilly days.",
+          "Easy ingestion: Smooth texture and natural citrus flavor loved by kids.",
+          "Fast Action: Superior bioavailability thanks to its liquid presentation."
+        ],
+        "details": [
+          {
+            "title": "Directions & Dosage",
+            "content": "Children 2 years and older: 1 teaspoon (5 ml) daily. Shake well before use.",
+            "icon": "usage"
+          },
+          {
+            "title": "Key Ingredients",
+            "content": "Ascorbic Acid (Vitamin C), Zinc Gluconate, elderberry extract, and natural orange flavor.",
+            "icon": "ingredients"
+          }
+        ],
+        "images": [
+          "/images/products/immune-support.png",
+          "/images/products/immune-support.svg",
+          "/images/home/giraffe-winter.png"
+        ],
+        "amazonUrl": "https://www.amazon.com/dp/B0EXAMPLE2"
+      },
+      {
+        "id": "3",
+        "slug": "boosts-appetite",
+        "sku": "18-0310",
+        "name": "Boosts Appetite",
+        "description": "With L-Lysine and B-Complex to support healthy appetite and steady energy throughout winter. Enriched with Inositol and Calcium for active growth and playtime vitality.",
+        "bullets": [
+          "Stimulates appetite: Essential amino acid L-Lysine for active growth and playtime.",
+          "Daily vitality: B-Complex that converts food into steady energy.",
+          "Fruit flavor: Delicious without any medicinal aftertaste."
+        ],
+        "details": [
+          {
+            "title": "Directions & Dosage",
+            "content": "Take 5 ml 15 minutes before the main meal. Children aged 3 to 12.",
+            "icon": "usage"
+          },
+          {
+            "title": "Key Ingredients",
+            "content": "L-Lysine HCl, Vitamin B1, B6, B12, vegetable malt extract, and fruit nectar.",
+            "icon": "ingredients"
+          }
+        ],
+        "images": [
+          "/images/products/boosts-appetite.png",
+          "/images/products/boosts-appetite.svg",
+          "/images/home/giraffe-winter.png"
+        ],
+        "amazonUrl": "https://www.amazon.com/dp/B0EXAMPLE3"
+      },
+      {
+        "id": "4",
+        "slug": "super-vitamins",
+        "sku": "18-0311",
+        "name": "Super Vitamins Vials",
+        "description": "Drinkable vials with Royal Jelly and 12 complete vitamins. Handy for school lunchboxes in winter, providing active vitality and school defenses without needing water.",
+        "bullets": [
+          "12 Complete Vitamins: Full spectrum micronutrients for school days.",
+          "Purified Royal Jelly: Natural source of energetic and antioxidant nutrients.",
+          "Secure vial format: Ready to drink with zero spills or messy prep."
+        ],
+        "details": [
+          {
+            "title": "Directions & Dosage",
+            "content": "1 vial daily in the morning before school. Shake and twist cap to open.",
+            "icon": "usage"
+          },
+          {
+            "title": "Key Ingredients",
+            "content": "Fresh lyophilized Royal Jelly, Vitamins A, C, D3, E, B-Complex, and Magnesium.",
+            "icon": "ingredients"
+          }
+        ],
+        "images": [
+          "/images/products/super-vitamins.png",
+          "/images/products/super-vitamins.svg",
+          "/images/home/giraffe-winter.png"
+        ],
+        "amazonUrl": "https://www.amazon.com/dp/B0EXAMPLE4"
+      }
+    ]
+  }
+}

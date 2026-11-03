@@ -1,0 +1,44 @@
+{
+  "es": {
+    "brandName": "Detalle de Producto | Girafkids®",
+    "breadcrumbs": {
+      "home": "Inicio",
+      "products": "Productos"
+    },
+    "labels": {
+      "sku": "SKU:",
+      "buyOnAmazon": "Ver en Amazon ↗",
+      "viewDetails": "Ver detalles",
+      "seeMore": "Ver más",
+      "seeLess": "Ver menos"
+    },
+    "complementary": {
+      "tag": "CUIDADO COMPLEMENTARIO",
+      "title": "Rutina de Invierno Girafkids",
+      "subtitle": "Refuerza las defensas y el apetito de los pequeños en días fríos.",
+      "amazonCatalogText": "Ver catálogo en Amazon →",
+      "amazonCatalogUrl": "https://www.amazon.com"
+    }
+  },
+  "en": {
+    "brandName": "Product Detail | Girafkids®",
+    "breadcrumbs": {
+      "home": "Home",
+      "products": "Products"
+    },
+    "labels": {
+      "sku": "SKU:",
+      "buyOnAmazon": "See on Amazon ↗",
+      "viewDetails": "See details",
+      "seeMore": "Read more",
+      "seeLess": "Read less"
+    },
+    "complementary": {
+      "tag": "COMPLEMENTARY CARE",
+      "title": "Girafkids Winter Routine",
+      "subtitle": "Boost defenses and appetite for little ones on chilly days.",
+      "amazonCatalogText": "See catalog on Amazon →",
+      "amazonCatalogUrl": "https://www.amazon.com"
+    }
+  }
+}

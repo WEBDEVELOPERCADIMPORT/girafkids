@@ -1,50 +1,98 @@
 {
-    "es": {
-        "nav": [
-            {
-                "id": "home",
-                "label": "Inicio",
-                "path": ""
-            },
-            {
-                "id": "about",
-                "label": "Nosotros",
-                "path": "about",
-                "chilndren": [
-                    {
-                        "id": "futuro",
-                        "label": "Futuro",
-                        "path": "futuro"
-                    }
-                ]
-            }
-        ],
-        "footer": {
-            "rights": "Todos los derechos reservados."
-        }
+  "es": {
+    "nav": [
+      {
+        "id": "productos",
+        "label": "Productos",
+        "path": "#productos"
+      },
+      {
+        "id": "defensas",
+        "label": "Defensas de Invierno",
+        "path": "#defensas"
+      },
+      {
+        "id": "farmacias",
+        "label": "Puntos de Venta",
+        "path": "#farmacias"
+      },
+      {
+        "id": "opiniones",
+        "label": "Opiniones",
+        "path": "#opiniones"
+      },
+      {
+        "id": "preguntas",
+        "label": "Preguntas",
+        "path": "#preguntas"
+      }
+    ],
+    "navbarCta": {
+      "text": "Ver en Amazon ↗",
+      "url": "https://www.amazon.com"
     },
-    "en": {
-        "nav": [
-            {
-                "id": "home",
-                "label": "Home",
-                "path": ""
-            },
-            {
-                "id": "about",
-                "label": "About Us",
-                "path": "about",
-                "chilndren": [
-                    {
-                        "id": "future",
-                        "label": "Future Us",
-                        "path": "Future"
-                    }
-                ]
-            }
-        ],
-        "footer": {
-            "rights": "All rights reserved."
-        }
+    "footer": {
+      "description": "Nutrición infantil de grado pediátrico en formato líquido. Amor, cuidado y salud para cada etapa de su infancia.",
+      "navTitle": "NAVEGACIÓN",
+      "links": [
+        { "label": "Catálogo de Invierno", "url": "#productos" },
+        { "label": "Defensas y Beneficios", "url": "#defensas" },
+        { "label": "Dónde Encontrarnos", "url": "#farmacias" },
+        { "label": "Preguntas Frecuentes", "url": "#preguntas" }
+      ],
+      "storeTitle": "TIENDA OFICIAL",
+      "storeText": "Adquiere con seguridad y garantía en Amazon USA.",
+      "storeCta": "Visitar Tienda en Amazon ↗",
+      "rights": "© 2026 Girafkids LLC. Todos los derechos reservados.",
+      "pediatricTagline": "Formulado con amor y rigor pediátrico."
     }
+  },
+  "en": {
+    "nav": [
+      {
+        "id": "productos",
+        "label": "Products",
+        "path": "#productos"
+      },
+      {
+        "id": "defensas",
+        "label": "Winter Defense",
+        "path": "#defensas"
+      },
+      {
+        "id": "farmacias",
+        "label": "Store Locator",
+        "path": "#farmacias"
+      },
+      {
+        "id": "opiniones",
+        "label": "Reviews",
+        "path": "#opiniones"
+      },
+      {
+        "id": "preguntas",
+        "label": "FAQs",
+        "path": "#preguntas"
+      }
+    ],
+    "navbarCta": {
+      "text": "See on Amazon ↗",
+      "url": "https://www.amazon.com"
+    },
+    "footer": {
+      "description": "Pediatric-grade infant nutrition in liquid format. Love, care and health for every stage of childhood.",
+      "navTitle": "NAVIGATION",
+      "links": [
+        { "label": "Winter Catalog", "url": "#productos" },
+        { "label": "Defenses & Benefits", "url": "#defensas" },
+        { "label": "Where to Find Us", "url": "#farmacias" },
+        { "label": "Frequently Asked Questions", "url": "#preguntas" }
+      ],
+      "storeTitle": "OFFICIAL STORE",
+      "storeText": "Buy safely with direct warranty on Amazon USA.",
+      "storeCta": "Visit Amazon Store ↗",
+      "rights": "© 2026 Girafkids LLC. All rights reserved.",
+      "pediatricTagline": "Formulated with love and pediatric rigor."
+    }
+  }
 }

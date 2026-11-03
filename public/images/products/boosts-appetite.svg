@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280" fill="none">
+    <rect width="200" height="280" rx="20" fill="#FFFDF8"/>
+    <!-- Frasco / Caja -->
+    <rect x="55" y="50" width="90" height="190" rx="12" fill="#FEF08A" stroke="#E2E8F0" stroke-width="2"/>
+    <rect x="70" y="25" width="60" height="25" rx="6" fill="#F97316"/>
+    <!-- Etiqueta -->
+    <rect x="63" y="80" width="74" height="135" rx="8" fill="#FFFFFF"/>
+    <!-- Logo Girafkids en la botella -->
+    <rect x="70" y="90" width="60" height="16" rx="4" fill="#F59E0B"/>
+    <text x="100" y="102" font-size="9" font-family="sans-serif" font-weight="bold" fill="#78350F" text-anchor="middle">GIRAFKIDS</text>
+    <!-- Nombre producto -->
+    <text x="100" y="125" font-size="10" font-family="sans-serif" font-weight="bold" fill="#0F172A" text-anchor="middle">Boosts Appetite</text>
+    <text x="100" y="140" font-size="7" font-family="sans-serif" fill="#64748B" text-anchor="middle">L-Lisina + B</text>
+    <!-- Badge -->
+    <circle cx="100" cy="170" r="18" fill="#FEF3C7"/>
+    <text x="100" y="174" font-size="10" font-weight="bold" fill="#D97706" text-anchor="middle">★</text>
+  </svg>

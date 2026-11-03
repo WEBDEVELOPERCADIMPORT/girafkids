@@ -1,0 +1,253 @@
+---
+import type { Lang } from "../../../i18n/config.i18n";
+import type { LocalizedProductItem } from "../../../actions/products/getProducts.action";
+import productContent from "../../../data/site-product-content.json";
+
+interface Props {
+  lang: Lang;
+  product: LocalizedProductItem;
+}
+
+const { lang, product } = Astro.props;
+const t = productContent[lang] ?? productContent.es;
+
+const bullets = product.bullets || [];
+const details = Array.isArray(product.details) ? product.details : [];
+
+const imageList = product.images && product.images.length > 0 ? product.images : [product.image || ""];
+---
+
+<section class="py-10 sm:py-16 bg-[#FFFBF2]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Migas de Pan (Breadcrumbs) -->
+    <nav class="flex items-center gap-2 text-xs font-bold text-[#8F6F5B] mb-8" aria-label="Breadcrumb">
+      <a href={`/${lang}/`} class="hover:text-[#EA580C] transition-colors">{t.breadcrumbs.home}</a>
+      <span>/</span>
+      <a href={`/${lang}/#productos`} class="hover:text-[#EA580C] transition-colors">{t.breadcrumbs.products}</a>
+      <span>/</span>
+      <span class="text-[#3D2314] truncate max-w-xs sm:max-w-md">{product.name}</span>
+    </nav>
+
+    <!-- Detalle Principal en 2 Columnas -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start product-detail-container">
+      
+      <!-- Columna Izquierda: Galería con la lista de imágenes del JSON -->
+      <div class="lg:col-span-6 flex flex-col items-center">
+        <!-- Contenedor Principal de la Imagen -->
+        <div class="w-full aspect-[4/5] max-w-md rounded-[32px] bg-[#FFF8EE] border-2 border-[#F3E5CE] p-8 flex items-center justify-center shadow-sm relative overflow-hidden">
+          <img
+            id="mainProductImage"
+            src={imageList[0]}
+            alt={product.name}
+            class="max-h-full max-w-full object-contain filter drop-shadow-xl transition-all duration-300"
+            onerror="this.src='/images/products/multi-vitamin-liquido.svg'"
+          />
+        </div>
+
+        <!-- Selector de Miniaturas Horizontal a partir de la misma lista images -->
+        {imageList.length > 1 && (
+          <div class="flex items-center justify-center gap-3 mt-6 w-full max-w-md">
+            {imageList.map((imgSrc, index) => (
+              <button
+                type="button"
+                class={`thumb-btn flex-1 p-2 rounded-2xl bg-white border-2 transition-all flex flex-col items-center text-center gap-1.5 focus:outline-none ${
+                  index === 0
+                    ? "border-[#EA580C] shadow-md ring-2 ring-[#EA580C]/20"
+                    : "border-[#F3E5CE] hover:border-[#FDBA2A]"
+                }`}
+                data-src={imgSrc}
+              >
+                <div class="w-12 h-12 flex items-center justify-center">
+                  <img
+                    src={imgSrc}
+                    alt={`${product.name} vista ${index + 1}`}
+                    class="max-h-full max-w-full object-contain"
+                    onerror="this.src='/images/products/multi-vitamin-liquido.svg'"
+                  />
+                </div>
+                <span class="text-[10px] font-black text-[#694A38] leading-tight">
+                  Vista {index + 1}
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Columna Derecha: Información de Compra y Beneficios (Sin Stock Disponible ni Estrellas) -->
+      <div class="lg:col-span-6 space-y-6">
+        
+        <!-- SKU / Código Solamente -->
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-[#8F6F5B] uppercase tracking-wider">
+            {t.labels.sku} {product.sku}
+          </span>
+        </div>
+
+        <!-- Título H1 -->
+        <h1 class="text-2xl sm:text-4xl font-black text-[#3D2314] leading-tight tracking-tight">
+          {product.name}
+        </h1>
+
+        <!-- Descripción General con Ver más / Ver menos -->
+        <div class="product-detail-desc-wrapper">
+          <p class="product-detail-desc-text text-sm sm:text-base text-[#694A38] leading-relaxed line-clamp-3 transition-all">
+            {product.description}
+          </p>
+          <button
+            type="button"
+            class="detail-desc-toggle-btn text-xs sm:text-sm font-bold text-[#EA580C] hover:text-[#C2410C] hover:underline mt-1.5 focus:outline-none transition-colors inline-flex items-center gap-1 cursor-pointer"
+            data-more={t.labels.seeMore}
+            data-less={t.labels.seeLess}
+          >
+            <span>{t.labels.seeMore}</span>
+          </button>
+        </div>
+
+        <!-- Bullet points destacados con checkmark naranja (SVG nítido, sin emojis) -->
+        <div class="space-y-3 pt-2 pb-2">
+          {bullets.map((bullet) => (
+            <div class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-[#FFF7ED] text-[#EA580C] border border-[#FED7AA] flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+                <svg class="w-3 h-3 stroke-current fill-none" stroke-width="3" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <p class="text-xs sm:text-sm font-semibold text-[#3D2314] leading-snug">
+                {bullet}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <!-- CTA de Compra: Botón Full-width Naranja -->
+        <div class="pt-3">
+          <a
+            href={product.amazonUrl || "https://www.amazon.com"}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#EA580C] hover:bg-[#D9480F] text-white font-black text-base shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 text-center"
+          >
+            <span>{t.labels.buyOnAmazon}</span>
+          </a>
+        </div>
+
+        <!-- Acordeones de Información Técnica Dinámica a partir de la lista details -->
+        {details.length > 0 && (
+          <div class="space-y-3 pt-4 border-t border-[#F3E5CE] product-accordions">
+            {details.map((item, index) => (
+              <div class="tech-accordion-item rounded-2xl border border-[#F3E5CE] bg-white overflow-hidden">
+                <button
+                  type="button"
+                  class="tech-toggle w-full p-4 text-left flex items-center justify-between text-xs sm:text-sm font-black text-[#3D2314] hover:bg-[#FFFDF8] cursor-pointer"
+                  aria-expanded={index === 0 ? "true" : "false"}
+                >
+                  <span class="flex items-center gap-2.5">
+                    <!-- Ícono SVG Vectorial según tipo -->
+                    <span class="w-7 h-7 rounded-lg bg-[#FFF7ED] text-[#EA580C] flex items-center justify-center shrink-0">
+                      {item.icon === "ingredients" ? (
+                        <svg class="w-4 h-4 fill-none stroke-current" stroke-width="2.2" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                      ) : (
+                        <svg class="w-4 h-4 fill-none stroke-current" stroke-width="2.2" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      )}
+                    </span>
+                    <span>{item.title}</span>
+                  </span>
+                  <span class="tech-icon text-[#EA580C] font-bold text-base">{index === 0 ? "−" : "+"}</span>
+                </button>
+                <div class={`tech-content px-4 pb-4 pt-1 text-xs text-[#694A38] leading-relaxed pl-13 ${index === 0 ? "block" : "hidden"}`}>
+                  <p>{item.content}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function setupProductDetail() {
+    const containers = document.querySelectorAll(".product-detail-container");
+
+    containers.forEach((container) => {
+      // Manejo de Miniaturas a partir de la lista images
+      const mainImg = container.querySelector("#mainProductImage") as HTMLImageElement | null;
+      const thumbBtns = container.querySelectorAll(".thumb-btn");
+
+      thumbBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const newSrc = (btn as HTMLElement).dataset.src;
+          if (mainImg && newSrc) {
+            mainImg.src = newSrc;
+          }
+
+          thumbBtns.forEach((b) => {
+            b.classList.remove("border-[#EA580C]", "shadow-md", "ring-2", "ring-[#EA580C]/20");
+            b.classList.add("border-[#F3E5CE]");
+          });
+
+          btn.classList.add("border-[#EA580C]", "shadow-md", "ring-2", "ring-[#EA580C]/20");
+          btn.classList.remove("border-[#F3E5CE]");
+        });
+      });
+
+      // Manejo de Toggle Descripción Ver más / Ver menos
+      const descWrapper = container.querySelector(".product-detail-desc-wrapper");
+      if (descWrapper) {
+        const text = descWrapper.querySelector(".product-detail-desc-text");
+        const btn = descWrapper.querySelector(".detail-desc-toggle-btn");
+        const span = btn?.querySelector("span");
+
+        if (text && btn && span) {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const isClamped = text.classList.toggle("line-clamp-3");
+            span.textContent = isClamped
+              ? (btn.getAttribute("data-more") || "Ver más")
+              : (btn.getAttribute("data-less") || "Ver menos");
+          });
+        }
+      }
+
+      // Manejo de Acordeones Técnicos
+      const accordionItems = container.querySelectorAll(".tech-accordion-item");
+      accordionItems.forEach((item) => {
+        const toggle = item.querySelector(".tech-toggle");
+        const content = item.querySelector(".tech-content");
+        const icon = item.querySelector(".tech-icon");
+
+        if (!toggle || !content || !icon) return;
+
+        toggle.addEventListener("click", () => {
+          const isClosed = content.classList.contains("hidden");
+
+          accordionItems.forEach((other) => {
+            other.querySelector(".tech-content")?.classList.add("hidden");
+            const otherIcon = other.querySelector(".tech-icon");
+            if (otherIcon) otherIcon.textContent = "+";
+            other.querySelector(".tech-toggle")?.setAttribute("aria-expanded", "false");
+          });
+
+          if (isClosed) {
+            content.classList.remove("hidden");
+            icon.textContent = "−";
+            toggle.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+    });
+  }
+
+  setupProductDetail();
+  document.addEventListener("astro:page-load", setupProductDetail);
+</script>

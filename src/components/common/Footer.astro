@@ -1,14 +1,88 @@
 ---
-import { getLangFromUrl, useTranslations } from '../../i18n/utils.i18n';
+import type { Lang } from "../../i18n/config.i18n";
+import globalContent from "../../data/site-global-content.json";
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = globalContent[lang] ?? globalContent.es;
 ---
 
-<footer class="w-full border-t border-gray-100 bg-white py-8 px-6 mt-10">
-  <div class="max-w-7xl mx-auto flex flex-col items-center justify-center">
-    <p class="text-sm font-medium text-gray-500 text-center">
-      {t.footer.rights}
-    </p>
+<footer
+  class="w-full bg-[#9A3412] text-white pt-16 pb-8 px-4 sm:px-6 lg:px-8 mt-20 border-t-4 border-[#C2410C]"
+>
+  <div class="max-w-7xl mx-auto">
+    <!-- Main 3 Columns Grid -->
+    <div
+      class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-white/15"
+    >
+      <!-- Columna 1: Marca y Propósito -->
+      <div class="md:col-span-5 flex flex-col items-start space-y-4">
+        <a
+          href={`/${lang}/`}
+          class="inline-block transition-opacity hover:opacity-90"
+        >
+          <img src="/logo.png" alt="Girafkids" class="h-12 w-auto" />
+        </a>
+        <p class="text-sm text-[#FDE8D7] leading-relaxed max-w-sm">
+          {t.footer.description}
+        </p>
+      </div>
+
+      <!-- Columna 2: Navegación -->
+      <div class="md:col-span-3 space-y-4">
+        <h4 class="text-xs font-black uppercase tracking-wider text-[#FDBA2A]">
+          {t.footer.navTitle}
+        </h4>
+        <ul class="space-y-2.5 text-sm">
+          {
+            t.footer.links.map((link) => (
+              <li>
+                <a
+                  href={
+                    link.url.startsWith("#") ? `/${lang}/${link.url}` : link.url
+                  }
+                  class="text-[#FDE8D7] hover:text-white transition-colors duration-150 inline-block"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Columna 3: Tienda Oficial Amazon USA -->
+      <div
+        class="md:col-span-4 space-y-4 bg-white/5 p-6 rounded-2xl border border-white/10"
+      >
+        <h4 class="text-xs font-black uppercase tracking-wider text-[#FDBA2A]">
+          {t.footer.storeTitle}
+        </h4>
+        <p class="text-xs text-[#FDE8D7] leading-relaxed">
+          {t.footer.storeText}
+        </p>
+        <div>
+          <a
+            href="https://www.amazon.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-xl bg-[#FDBA2A] text-[#7C2D12] font-black text-xs sm:text-sm hover:bg-[#F59E0B] shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+          >
+            <span>{t.footer.storeCta}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra Inferior -->
+    <div
+      class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#FDE8D7]/80 gap-4 text-center sm:text-left"
+    >
+      <p>{t.footer.rights}</p>
+      <p class="font-medium text-[#FDBA2A]">{t.footer.pediatricTagline}</p>
+    </div>
   </div>
 </footer>

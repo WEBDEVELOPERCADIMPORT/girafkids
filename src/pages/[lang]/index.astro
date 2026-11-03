@@ -1,30 +1,64 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import content from '../../data/site-example-content.json';
-import type { Lang } from '../../i18n/config.i18n';
+// src/pages/[lang]/index.astro
+import Layout from "../../layouts/Layout.astro";
+import homeContent from "../../data/site-home-content.json";
+import { LANGUAGES, type Lang } from "../../i18n/config.i18n";
+import { actions } from "astro:actions";
+
+import Hero from "../../components/home/sections/Hero.astro";
+import TrustReasons from "../../components/home/sections/TrustReasons.astro";
+import ProductShowcase from "../../components/home/sections/ProductShowcase.astro";
+import KidsEnergyBanner from "../../components/home/sections/KidsEnergyBanner.astro";
+import Reviews from "../../components/common/Reviews.astro";
+import StoreLocator from "../../components/home/sections/StoreLocator.astro";
+import FAQ from "../../components/home/sections/FAQ.astro";
 
 const lang = Astro.params.lang as Lang;
-const data = content[lang];
 
-if (!(lang in content)) {
-    return Astro.redirect('/404');
+// 1. Validar idioma soportado
+if (!(lang in LANGUAGES) || !(lang in homeContent)) {
+  return Astro.redirect("/404");
 }
+
+const content = homeContent[lang];
+
+// 2. Consultar Server Actions de AutoUI para el idioma correspondiente
+const [{ data: productsResponse }, { data: reviewsResponse }, { data: storesResponse }] =
+  await Promise.all([
+    Astro.callAction(actions.getProducts, { lang }),
+    Astro.callAction(actions.getReviews, {}),
+    Astro.callAction(actions.getStores, {}),
+  ]);
+
+const products = productsResponse?.data ?? [];
+const reviews = reviewsResponse?.data ?? [];
+const stores = storesResponse?.data ?? [];
 ---
 
-<Layout title={data.brandName} lang={lang}>
-    <main class="min-h-screen flex flex-col items-center justify-center relative p-6">
-        
-        <div class="relative group mb-20">
-            <div class="absolute inset-0 bg-gradient-to-r from-[#21D4ED] to-[#AF25FD] blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500 rounded-full"></div>
-            <img 
-                src="/logo.png" 
-                alt="Logo Flotante" 
-                class="relative w-48 h-48 md:w-64 md:h-64 object-contain animate-float"
-            />
-            <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-4 bg-black/40 blur-md rounded-full animate-shadow"></div>
-        </div>
-        <h1 class="text-gray-400 text-center">
-            {data.autroui.title}
-        </h1>
-    </main>
+<Layout
+  title={content.brandName}
+  lang={lang}
+  description={content.meta?.description}
+  image="/images/home/giraffe-winter.png"
+>
+  <!-- Hero Section -->
+  <Hero lang={lang} />
+
+  <!-- 5 Razones para Confiar -->
+  <TrustReasons lang={lang} />
+
+  <!-- Catálogo Destacado / Suplementos (Carrusel Horizontal) -->
+  <ProductShowcase lang={lang} products={products} />
+
+  <!-- Banner Promocional Niños Energía -->
+  <KidsEnergyBanner lang={lang} />
+
+  <!-- Prueba Social & Reseñas Amazon usando common/Reviews.astro -->
+  <Reviews lang={lang} reviews={reviews} />
+
+  <!-- Localizador de Farmacias por ZIP -->
+  <StoreLocator lang={lang} stores={stores} />
+
+  <!-- Preguntas Frecuentes -->
+  <FAQ lang={lang} />
 </Layout>

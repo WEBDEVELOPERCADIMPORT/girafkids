@@ -1,0 +1,108 @@
+---
+import type { Lang } from "../../../i18n/config.i18n";
+import homeContent from "../../../data/site-home-content.json";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = (homeContent[lang] ?? homeContent.es).faq;
+---
+
+<section id="preguntas" class="py-16 sm:py-24 bg-[#FFFBF2] overflow-hidden">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Encabezado de la Sección -->
+    <div class="text-center mb-14 space-y-3">
+      <span class="text-xs font-black uppercase tracking-wider text-[#EA580C]">
+        {t.tag}
+      </span>
+      <h2 class="text-2xl sm:text-4xl font-black text-[#3D2314] tracking-tight">
+        {t.title}
+      </h2>
+    </div>
+
+    <!-- Contenedor del Acordeón con la Mascota en la base -->
+    <div class="relative space-y-4 faq-accordion-container">
+      {t.items.map((item, index) => (
+        <div class="faq-item rounded-2xl border border-[#F3E5CE] bg-white shadow-sm overflow-hidden transition-all duration-200">
+          
+          <!-- Botón de Pregunta -->
+          <button
+            type="button"
+            class="faq-toggle w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 focus:outline-none hover:bg-[#FFFDF8]"
+            aria-expanded={index === 0 ? "true" : "false"}
+          >
+            <span class="text-sm sm:text-base font-black text-[#3D2314]">
+              {item.question}
+            </span>
+            <span class="faq-icon w-8 h-8 rounded-full bg-[#FFF7ED] text-[#EA580C] flex items-center justify-center font-bold text-lg shrink-0 transition-transform duration-300">
+              {index === 0 ? "−" : "+"}
+            </span>
+          </button>
+
+          <!-- Respuesta Colapsable -->
+          <div class={`faq-content px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-[#694A38] leading-relaxed ${index === 0 ? "block" : "hidden"}`}>
+            <p>{item.answer}</p>
+          </div>
+
+        </div>
+      ))}
+
+      <!-- Mascota Jirafa en la parte inferior izquierda/centro -->
+         <div class="bg-white px-4 py-2.5 rounded-2xl border border-[#F3E5CE] shadow-sm text-xs font-bold text-[#7C2D12]">
+          ¿Tienes más preguntas? Escríbenos a <span class="text-[#EA580C] underline">socialmedia@girafkids.com</span>
+        </div>
+      <div class="pt-8 flex items-center justify-center sm:justify-start gap-4">
+        <img
+          src="/images/home/giraffe-FAQ.png"
+          alt="Mascota Jirafkids con gorrito y bufanda"
+          class="w-60 h-auto object-contain filter drop-shadow-md animate-bounce"
+          style="animation-duration: 4s;"
+        />
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function setupFAQ() {
+    const containers = document.querySelectorAll('.faq-accordion-container');
+
+    containers.forEach((container) => {
+      const items = container.querySelectorAll('.faq-item');
+
+      items.forEach((item) => {
+        const toggle = item.querySelector('.faq-toggle');
+        const content = item.querySelector('.faq-content');
+        const icon = item.querySelector('.faq-icon');
+
+        if (!toggle || !content || !icon) return;
+
+        toggle.addEventListener('click', () => {
+          const isOpen = !content.classList.contains('hidden');
+
+          // Cierra todos si se desea comportamiento de un acordeón a la vez
+          items.forEach((other) => {
+            other.querySelector('.faq-content')?.classList.add('hidden');
+            const otherIcon = other.querySelector('.faq-icon');
+            if (otherIcon) otherIcon.textContent = '+';
+            other.querySelector('.faq-toggle')?.setAttribute('aria-expanded', 'false');
+          });
+
+          if (!isOpen) {
+            content.classList.remove('hidden');
+            icon.textContent = '−';
+            toggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    });
+  }
+
+  setupFAQ();
+  document.addEventListener('astro:page-load', setupFAQ);
+</script>

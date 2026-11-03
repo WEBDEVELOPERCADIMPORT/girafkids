@@ -1,39 +1,31 @@
 {
-    "reviews": [
-        {
-            "id": 1,
-            "name": "John Doe",
-            "comment": "I absolutely love Cancundrink! The flavors are so refreshing and perfect for a hot day. I especially enjoy the coconut and mango water, it's like a tropical vacation in a bottle!",
-            "rating": 5,
-            "date": "2024-06-15"
-        },
-        {
-            "id": 2,
-            "name": "Jane Smith",
-            "comment": "Cancundrink has become my go-to drink for staying hydrated. The natural ingredients and unique recipes make it stand out from other beverages. I highly recommend trying their fruit juices, they're delicious!",
-            "rating": 4,
-            "date": "2024-06-10"
-        },
-        {
-            "id": 3,
-            "name": "Emily Johnson",
-            "comment": "I was pleasantly surprised by the quality of Cancundrink. The commitment to using natural ingredients really shines through in the taste. The aloe juices are my favorite, they have a nice balance of flavor and hydration.",
-            "rating": 5,
-            "date": "2024-06-05"
-        },
-        {
-            "id": 4,
-            "name": "Michael Brown",
-            "comment": "Cancundrink offers a unique and refreshing experience. The exclusive recipes make each drink special. I particularly enjoy the coconut milks, they are creamy and delicious.",
-            "rating": 4,
-            "date": "2024-06-01"
-        },
-        {
-            "id": 5,
-            "name": "Sarah Davis",
-            "comment": "I can't get enough of Cancundrink! The tropical purity and commitment to quality really set it apart. The natural ingredients make it a guilt-free indulgence. I highly recommend giving it a try!",
-            "rating": 5,
-            "date": "2024-05-28"
-        }
-    ]
+  "reviews": [
+    {
+      "id": 1,
+      "name": "Mariana Gómez P.",
+      "verified": true,
+      "title": "¡A mis hijos les encanta el sabor!",
+      "comment": "Mi niño de 4 años solía resistirse a cualquier jarabe, pero con Girafkids Multi Vitamin líquido se lo toma feliz cada mañana. Se nota más activo y en todo el invierno no ha faltado a clases.",
+      "rating": 5,
+      "date": "15 de Octubre, 2025"
+    },
+    {
+      "id": 2,
+      "name": "Carlos Eduardo R.",
+      "verified": true,
+      "title": "Excelente para su apetito y energía",
+      "comment": "Pediatra nos recomendó la fórmula con L-Lisina y Complejo B. En 2 semanas su apetito mejoró notablemente. La tranquilidad como padre no tiene precio.",
+      "rating": 5,
+      "date": "28 de Noviembre, 2025"
+    },
+    {
+      "id": 3,
+      "name": "Sofía Martínez L.",
+      "verified": true,
+      "title": "Inmunidad total frente al frío",
+      "comment": "Compramos el Immune Support en Amazon y ha sido nuestro mejor aliado durante los meses más fríos. Cero azúcar añadida y una calidad que se nota.",
+      "rating": 5,
+      "date": "12 de Enero, 2026"
+    }
+  ]
 }

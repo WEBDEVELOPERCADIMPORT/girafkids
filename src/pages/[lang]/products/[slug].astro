@@ -1,0 +1,53 @@
+---
+// src/pages/[lang]/products/[slug].astro
+import Layout from "../../../layouts/Layout.astro";
+import { LANGUAGES, type Lang } from "../../../i18n/config.i18n";
+import { actions } from "astro:actions";
+
+import ProductDetail from "../../../components/product/sections/ProductDetail.astro";
+import ComplementaryProducts from "../../../components/product/sections/ComplementaryProducts.astro";
+
+const lang = Astro.params.lang as Lang;
+const { slug } = Astro.params;
+
+// 1. Validar idioma y parámetro slug
+if (!(lang in LANGUAGES) || !slug) {
+  return Astro.redirect("/404");
+}
+
+// 2. Consultar producto por slug en el idioma correspondiente
+const { data: productResponse, error: productError } = await Astro.callAction(
+  actions.getProductBySlug,
+  { slug, lang }
+);
+
+if (productError || !productResponse?.data) {
+  return Astro.redirect("/404");
+}
+
+const product = productResponse.data;
+
+// 3. Consultar todos los productos para cross-selling en el idioma correspondiente
+const { data: allProductsResponse } = await Astro.callAction(
+  actions.getProducts,
+  { lang }
+);
+const allProducts = allProductsResponse?.data ?? [];
+---
+
+<Layout
+  title={`${product.name} | Girafkids®`}
+  lang={lang}
+  description={product.description}
+  image={product.image}
+>
+  <!-- Detalle de Producto -->
+  <ProductDetail lang={lang} product={product} />
+
+  <!-- Productos Complementarios / Cross-selling -->
+  <ComplementaryProducts
+    lang={lang}
+    currentSlug={slug}
+    allProducts={allProducts}
+  />
+</Layout>

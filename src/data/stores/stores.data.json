@@ -1,0 +1,44 @@
+{
+  "places": [
+    {
+      "id": "1",
+      "name": "Cancún Central Store",
+      "address": "Av. Tulum 123, Cancún, Quintana Roo",
+      "zipCode": "77500",
+      "phone": "+52 (998) 884-1234",
+      "hours": "8:00 AM - 10:00 PM"
+    },
+    {
+      "id": "2",
+      "name": "Playa del Carmen Outlet",
+      "address": "Calle 10 #456, Playa del Carmen, Quintana Roo",
+      "zipCode": "77710",
+      "phone": "+52 (984) 873-5678",
+      "hours": "9:00 AM - 9:00 PM"
+    },
+    {
+      "id": "3",
+      "name": "Tulum Beach Shop",
+      "address": "Carretera Tulum-Boca Paila Km 5, Tulum, Quintana Roo",
+      "zipCode": "77780",
+      "phone": "+52 (984) 802-9012",
+      "hours": "9:00 AM - 8:00 PM"
+    },
+    {
+      "id": "4",
+      "name": "Riviera Maya Market",
+      "address": "Av. Kukulcán Km 9, Riviera Maya, Quintana Roo",
+      "zipCode": "77710",
+      "phone": "+52 (998) 883-3456",
+      "hours": "8:30 AM - 9:30 PM"
+    },
+    {
+      "id": "5",
+      "name": "Isla Mujeres Store",
+      "address": "Calle Hidalgo #789, Isla Mujeres, Quintana Roo",
+      "zipCode": "77400",
+      "phone": "+52 (998) 877-0123",
+      "hours": "9:00 AM - 7:00 PM"
+    }
+  ]
+}

@@ -1,1 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-sour-gummy: 'Sour Gummy', cursive, sans-serif;
+  --font-sans: 'Sour Gummy', cursive, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@layer base {
+  :root {
+    --color-cream: #FFFBF2;
+    --color-cream-light: #FEFDF9;
+    --color-cream-card: #FFF8E7;
+    --color-cream-border: #F3E5CE;
+    --color-orange-primary: #E85D04;
+    --color-orange-hover: #D9480F;
+    --color-orange-gradient-start: #F97316;
+    --color-orange-gradient-end: #EA580C;
+    --color-terracotta: #9A3412;
+    --color-terracotta-dark: #7C2D12;
+    --color-yellow-accent: #FDBA2A;
+    --color-brown-heading: #3D2314;
+    --color-brown-body: #694A38;
+    --color-brown-muted: #8F6F5B;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-brown-body);
+    font-family: 'Sour Gummy', cursive, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: "liga" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-brown-heading);
+    font-family: 'Sour Gummy', cursive, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 800;
+  }
+
+  button, input, select, textarea {
+    font-family: 'Sour Gummy', cursive, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+/* Clases utilitarias de soporte y tema */
+.font-sour-gummy {
+  font-family: 'Sour Gummy', cursive, sans-serif;
+}
+
+.bg-cream-canvas {
+  background-color: var(--color-cream);
+}
+
+.bg-cream-card {
+  background-color: #FFFDF8;
+}
+
+.bg-terracotta {
+  background-color: var(--color-terracotta);
+}
+
+.text-brown-heading {
+  color: var(--color-brown-heading);
+}
+
+.text-brown-body {
+  color: var(--color-brown-body);
+}
+
+.text-brown-muted {
+  color: var(--color-brown-muted);
+}
+
+.btn-amazon-orange {
+  background-color: #E85D04;
+  color: #FFFFFF;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-amazon-orange:hover {
+  background-color: #D9480F;
+  transform: translateY(-1px);
+}
+
+/* Scrollbars y animaciones suaves */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

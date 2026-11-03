@@ -1,89 +1,164 @@
 ---
-import { getLangFromUrl, useTranslations } from "../../i18n/utils.i18n";
+import type { Lang } from "../../i18n/config.i18n";
+import globalContent from "../../data/site-global-content.json";
 
-const lang = getLangFromUrl(Astro.url);
-const { navLinks } = useTranslations(lang);
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = globalContent[lang] ?? globalContent.es;
 
 const currentPath = Astro.url.pathname;
-const switchLangPath =
-  lang === "es"
-    ? currentPath.replace("/es", "/en")
-    : currentPath.replace("/en", "/es");
+const esPath = currentPath.startsWith("/en")
+  ? currentPath.replace("/en", "/es")
+  : currentPath;
+const enPath = currentPath.startsWith("/es")
+  ? currentPath.replace("/es", "/en")
+  : `/en${currentPath === "/" ? "/" : currentPath}`;
 ---
 
-<nav
-  class="sticky top-0 z-50 w-full px-6 py-4 bg-transparent backdrop-blur-md border-b border-gray-100"
->
-  <div class="max-w-7xl mx-auto flex justify-between items-center">
-    <a
-      href={`/${lang}/`}
-      class="flex items-center gap-2 transition hover:opacity-80"
-    >
+<header class="sticky top-0 z-50 w-full bg-[#FFFBF2]/95 backdrop-blur-md border-b border-[#F3E5CE]/80 shadow-[0_2px_12px_rgba(232,93,4,0.04)] main-navbar">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    
+    <!-- Logo -->
+    <a href={`/${lang}/`} class="flex items-center gap-2 group transition-transform active:scale-95">
       <img
         src="/logo.png"
-        class="w- h-10 object-contain"
-        alt="Logo del sitio"
+        alt="Girafkids Logo"
+        class="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
       />
     </a>
 
-    <div class="flex items-center gap-6 sm:gap-8">
-      <ul class="flex items-center gap-6 text-sm font-medium text-gray-600">
-        {
-          navLinks.map((item) => (
-            <li class="relative group">
-              <a
-                href={item.href}
-                class="flex items-center gap-1 hover:text-blue-600 transition-colors py-1"
-              >
-                {item.label}
-                {item.children && (
-                  <svg
-                    class="w-3.5 h-3.5 transition-transform group-hover:rotate-180"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                )}
-              </a>
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden lg:flex items-center gap-8">
+      {t.nav.map((item) => (
+        <a
+          href={item.path.startsWith("#") ? `/${lang}/${item.path}` : item.path}
+          class="text-sm font-bold text-[#694A38] hover:text-[#EA580C] transition-colors py-1 relative group"
+        >
+          <span>{item.label}</span>
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#EA580C] transition-all duration-200 group-hover:w-full rounded-full"></span>
+        </a>
+      ))}
+    </nav>
 
-              {/* Menú flotante desplegable */}
-              {item.children && item.children.length > 0 && (
-                <div class="absolute left-0 top-full hidden group-hover:block pt-2 w-48 z-50">
-                  <ul class="bg-white/95 backdrop-blur-md border border-gray-100 rounded-xl shadow-xl p-1.5 flex flex-col gap-1">
-                    {item.children.map((child) => (
-                      <li>
-                        <a
-                          href={child.href}
-                          class="block px-3 py-2 text-xs text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded-lg transition-colors"
-                        >
-                          {child.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </li>
-          ))
-        }
-      </ul>
+    <!-- Desktop Language Switcher Personalizado & Botón Hamburguesa Móvil -->
+    <div class="flex items-center gap-3">
+      
+      <!-- Selector de Idioma Tipo Cápsula / Switch -->
+      <div class="inline-flex items-center p-1 rounded-full bg-[#FFF4E0] border border-[#F3E5CE] shadow-xs">
+        <!-- Opción ES -->
+        <a
+          href={esPath}
+          class={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-black transition-all ${
+            lang === "es"
+              ? "bg-[#EA580C] text-white shadow-xs"
+              : "text-[#8F6F5B] hover:text-[#EA580C]"
+          }`}
+          title="Español"
+        >
+          <span>🇲🇽</span>
+          <span>ES</span>
+        </a>
 
-      <div class="hidden sm:block w-px h-5 bg-gray-200"></div>
+        <!-- Opción EN -->
+        <a
+          href={enPath}
+          class={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-black transition-all ${
+            lang === "en"
+              ? "bg-[#EA580C] text-white shadow-xs"
+              : "text-[#8F6F5B] hover:text-[#EA580C]"
+          }`}
+          title="English"
+        >
+          <span>🇺🇸</span>
+          <span>EN</span>
+        </a>
+      </div>
 
-      <a
-        href={switchLangPath}
-        class="flex items-center justify-center px-3 py-1.5 text-xs sm:text-sm font-semibold text-gray-700 bg-gray-50 border border-gray-200 rounded-full shadow-sm hover:bg-gray-100 hover:text-blue-600 transition-all active:scale-95"
-        title={lang === "es" ? "Switch to English" : "Cambiar a Español"}
+      <!-- Botón de Menú Hamburguesa Móvil (Visible solo en pantallas < lg) -->
+      <button
+        id="mobileMenuToggle"
+        type="button"
+        class="lg:hidden w-11 h-11 rounded-2xl bg-white border border-[#F3E5CE] text-[#3D2314] hover:text-[#EA580C] flex items-center justify-center shadow-xs transition-colors focus:outline-none"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
       >
-        {lang === "es" ? "🇺🇸 EN" : "🇲🇽 ES"}
-      </a>
+        <!-- Ícono Hamburguesa (3 líneas) -->
+        <svg id="hamburgerIcon" class="w-6 h-6 stroke-current" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+
+        <!-- Ícono Cerrar (X) -->
+        <svg id="closeIcon" class="w-6 h-6 stroke-current hidden" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
     </div>
   </div>
-</nav>
+
+  <!-- Menú Desplegable Móvil -->
+  <div
+    id="mobileMenuDrawer"
+    class="hidden lg:hidden w-full bg-[#FFFBF2]/98 border-t border-[#F3E5CE] shadow-xl px-6 py-6 transition-all duration-300"
+  >
+    <nav class="flex flex-col space-y-4">
+      {t.nav.map((item) => (
+        <a
+          href={item.path.startsWith("#") ? `/${lang}/${item.path}` : item.path}
+          class="mobile-nav-link text-base font-black text-[#3D2314] hover:text-[#EA580C] py-2 border-b border-[#F8EFE7] transition-colors"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  function setupMobileNavbar() {
+    const header = document.querySelector(".main-navbar");
+    if (!header) return;
+
+    const toggleBtn = header.querySelector("#mobileMenuToggle") as HTMLButtonElement | null;
+    const drawer = header.querySelector("#mobileMenuDrawer");
+    const hamburgerIcon = header.querySelector("#hamburgerIcon");
+    const closeIcon = header.querySelector("#closeIcon");
+    const navLinks = header.querySelectorAll(".mobile-nav-link");
+
+    if (!toggleBtn || !drawer || !hamburgerIcon || !closeIcon) return;
+
+    const toggleMenu = () => {
+      const isOpen = !drawer.classList.contains("hidden");
+      if (isOpen) {
+        drawer.classList.add("hidden");
+        hamburgerIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+        toggleBtn.setAttribute("aria-expanded", "false");
+      } else {
+        drawer.classList.remove("hidden");
+        hamburgerIcon.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+        toggleBtn.setAttribute("aria-expanded", "true");
+      }
+    };
+
+    const closeMenu = () => {
+      drawer.classList.add("hidden");
+      hamburgerIcon.classList.remove("hidden");
+      closeIcon.classList.add("hidden");
+      toggleBtn.setAttribute("aria-expanded", "false");
+    };
+
+    toggleBtn.addEventListener("click", toggleMenu);
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+  }
+
+  setupMobileNavbar();
+  document.addEventListener("astro:page-load", setupMobileNavbar);
+</script>

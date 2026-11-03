@@ -1,0 +1,265 @@
+---
+import type { Lang } from "../../../i18n/config.i18n";
+import homeContent from "../../../data/site-home-content.json";
+import type { StorePlace } from "../../../actions/stores/getStores.action";
+
+interface Props {
+  lang: Lang;
+  stores: StorePlace[];
+}
+
+const { lang, stores } = Astro.props;
+const t = (homeContent[lang] ?? homeContent.es).storeLocator;
+
+const initialStore = stores[0] || {
+  id: "1",
+  name: "Cancún Central Store",
+  address: "Av. Tulum 123, Cancún, Quintana Roo",
+  zipCode: "77500",
+};
+const initialMapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(initialStore.address)}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
+---
+
+<section id="farmacias" class="py-16 sm:py-24 bg-gradient-to-b from-[#FFFBF2] to-[#FFF5EB]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Encabezado de la Sección -->
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
+      <span class="text-xs font-black uppercase tracking-wider text-[#EA580C]">
+        {t.tag}
+      </span>
+      <h2 class="text-3xl sm:text-5xl font-black text-[#3D2314] tracking-tight">
+        {t.title}
+      </h2>
+      <p class="text-sm sm:text-base text-[#694A38] leading-relaxed">
+        {t.subtitle}
+      </p>
+    </div>
+
+    <!-- Bloque de Dos Columnas: Google Maps Iframe & Buscador -->
+    <div
+      class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start store-locator-container"
+      data-stores={JSON.stringify(stores)}
+    >
+      
+      <!-- Columna Izquierda: Mapa de Google en Iframe Limpio -->
+      <div class="lg:col-span-7 flex flex-col space-y-4">
+        
+        <!-- Contenedor del Mapa con Iframe -->
+        <div class="relative rounded-[32px] overflow-hidden border border-[#F3E5CE] bg-white shadow-sm p-3 sm:p-4">
+          
+          <!-- Google Maps Iframe Limpio -->
+          <div class="relative w-full h-[400px] sm:h-[460px] rounded-2xl overflow-hidden bg-[#FAF0DE]">
+            <iframe
+              id="googleMapsIframe"
+              title="Ubicación de Farmacias Girafkids en Google Maps"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              loading="lazy"
+              allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              src={initialMapUrl}
+              class="w-full h-full rounded-2xl"
+            ></iframe>
+          </div>
+
+          <!-- Nota informativa inferior -->
+          <div class="pt-3 px-2 flex flex-wrap items-center justify-between text-[11px] text-[#8F6F5B] gap-2">
+            <span id="activeStoreAddress" class="truncate max-w-sm font-medium">
+              📍 {initialStore.address}
+            </span>
+            <span class="font-bold text-[#EA580C]">
+              Google Maps Oficial
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Columna Derecha: Buscador y Listado Interactivo de Sucursales -->
+      <div class="lg:col-span-5 flex flex-col space-y-4">
+        
+        <!-- Buscador Box -->
+        <div class="bg-white p-5 sm:p-6 rounded-[28px] border border-[#F3E5CE] shadow-sm">
+          <label for="zipInput" class="block text-xs font-black uppercase tracking-wider text-[#3D2314] mb-2">
+            {t.searchLabel}
+          </label>
+          <div class="flex gap-2">
+            <input
+              type="text"
+              id="zipInput"
+              placeholder={t.searchPlaceholder}
+              class="flex-1 px-4 py-3 text-sm rounded-xl border border-[#F3E5CE] bg-[#FFFDF8] text-[#3D2314] placeholder-[#A88365] focus:outline-none focus:border-[#EA580C] focus:ring-2 focus:ring-[#EA580C]/20 transition-all font-medium"
+            />
+            <button
+              id="searchBtn"
+              type="button"
+              class="px-5 py-3 rounded-xl bg-[#9A3412] hover:bg-[#7C2D12] text-white font-black text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-95 shrink-0"
+            >
+              {t.searchButton}
+            </button>
+          </div>
+          <div id="statusMessage" class="hidden mt-2 text-xs font-medium text-[#EA580C]"></div>
+        </div>
+
+        <!-- Listado de Sucursales -->
+        <div id="storesList" class="space-y-3 max-h-[420px] overflow-y-auto pr-1">
+          {stores.map((store, index) => (
+            <div
+              class={`store-item p-4 sm:p-5 rounded-2xl bg-white border cursor-pointer transition-all duration-200 ${
+                index === 0 ? "border-[#EA580C] ring-2 ring-[#EA580C]/20 shadow-md" : "border-[#F3E5CE] hover:border-[#EA580C]/50 shadow-sm"
+              }`}
+              data-id={store.id}
+              data-zip={store.zipCode}
+              data-name={store.name.toLowerCase()}
+              data-address={store.address}
+              data-raw-name={store.name}
+            >
+              <div class="flex items-start justify-between gap-3">
+                <div class="space-y-1 flex-1">
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <h3 class="text-sm font-black text-[#3D2314]">
+                      {store.name}
+                    </h3>
+                    <span class="text-[10px] font-black px-2 py-0.5 rounded-full bg-[#FFF7ED] text-[#EA580C] border border-[#FED7AA]">
+                      ZIP {store.zipCode}
+                    </span>
+                  </div>
+                  <p class="text-xs text-[#694A38] leading-relaxed">
+                    {store.address}
+                  </p>
+                  {store.phone && (
+                    <p class="text-[11px] text-[#8F6F5B] flex items-center gap-1 pt-0.5">
+                      <span>📞</span> {store.phone} {store.hours ? `• ⏰ ${store.hours}` : ""}
+                    </p>
+                  )}
+                </div>
+
+                <a
+                  href={`https://maps.google.com/?q=${encodeURIComponent(store.name + " " + store.address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="shrink-0 px-3 py-1.5 rounded-lg border border-[#FDBA2A] bg-[#FEF3C7]/50 hover:bg-[#FDBA2A] text-[#7C2D12] font-black text-xs transition-colors"
+                  onclick="event.stopPropagation();"
+                >
+                  {t.directions}
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function setupStoreLocator() {
+    const containers = document.querySelectorAll(".store-locator-container");
+
+    containers.forEach((container) => {
+      const input = container.querySelector("#zipInput") as HTMLInputElement | null;
+      const btn = container.querySelector("#searchBtn") as HTMLButtonElement | null;
+      const list = container.querySelector("#storesList");
+      const statusMsg = container.querySelector("#statusMessage");
+      const storeItems = container.querySelectorAll(".store-item");
+      const iframe = container.querySelector("#googleMapsIframe") as HTMLIFrameElement | null;
+      const activeAddressEl = container.querySelector("#activeStoreAddress");
+
+      if (!input || !list || !iframe) return;
+
+      const setMapAddress = (address: string, name: string, storeId?: string) => {
+        const query = encodeURIComponent(`${name}, ${address}`);
+        iframe.src = `https://maps.google.com/maps?q=${query}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
+
+        if (activeAddressEl) activeAddressEl.textContent = `📍 ${address}`;
+
+        // Actualizar estado activo en la lista
+        storeItems.forEach((itemEl) => {
+          const item = itemEl as HTMLElement;
+          if (storeId && item.dataset.id === storeId) {
+            item.classList.add("border-[#EA580C]", "ring-2", "ring-[#EA580C]/20", "shadow-md");
+            item.classList.remove("border-[#F3E5CE]");
+          } else {
+            item.classList.remove("border-[#EA580C]", "ring-2", "ring-[#EA580C]/20", "shadow-md");
+            item.classList.add("border-[#F3E5CE]");
+          }
+        });
+      };
+
+      // Clics en la lista de sucursales
+      storeItems.forEach((itemEl) => {
+        const item = itemEl as HTMLElement;
+        item.addEventListener("click", () => {
+          const address = item.dataset.address || "";
+          const name = item.dataset.rawName || "";
+          const id = item.dataset.id || "";
+          setMapAddress(address, name, id);
+        });
+      });
+
+      // Filtrado por buscador
+      const filterStores = () => {
+        const query = input.value.trim().toLowerCase();
+        let matchesCount = 0;
+        let firstMatch: { address: string; name: string; id: string } | null = null;
+
+        storeItems.forEach((itemEl) => {
+          const item = itemEl as HTMLElement;
+          const zip = item.dataset.zip?.toLowerCase() || "";
+          const name = item.dataset.name || "";
+          const addr = (item.dataset.address || "").toLowerCase();
+
+          if (!query || zip.includes(query) || name.includes(query) || addr.includes(query)) {
+            item.style.display = "block";
+            matchesCount++;
+            if (!firstMatch) {
+              firstMatch = {
+                address: item.dataset.address || "",
+                name: item.dataset.rawName || "",
+                id: item.dataset.id || "",
+              };
+            }
+          } else {
+            item.style.display = "none";
+          }
+        });
+
+        if (statusMsg) {
+          if (query && matchesCount === 0) {
+            statusMsg.classList.remove("hidden");
+            statusMsg.textContent = `No se encontraron sucursales para "${query}". Mostrando farmacias en la región:`;
+            storeItems.forEach((item) => ((item as HTMLElement).style.display = "block"));
+          } else if (query) {
+            statusMsg.classList.remove("hidden");
+            statusMsg.textContent = `${matchesCount} sucursal(es) encontradas para "${query}".`;
+          } else {
+            statusMsg.classList.add("hidden");
+          }
+        }
+
+        // Si hay coincidencia, actualizar automáticamente el mapa
+        if (firstMatch) {
+          setMapAddress(firstMatch.address, firstMatch.name, firstMatch.id);
+        }
+      };
+
+      input.addEventListener("input", filterStores);
+      btn?.addEventListener("click", filterStores);
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          filterStores();
+        }
+      });
+    });
+  }
+
+  setupStoreLocator();
+  document.addEventListener("astro:page-load", setupStoreLocator);
+</script>

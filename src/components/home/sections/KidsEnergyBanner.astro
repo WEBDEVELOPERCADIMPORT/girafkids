@@ -1,0 +1,44 @@
+---
+import type { Lang } from "../../../i18n/config.i18n";
+import homeContent from "../../../data/site-home-content.json";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = (homeContent[lang] ?? homeContent.es).kidsEnergyBanner;
+---
+
+<section
+  class="relative w-full overflow-hidden bg-cover bg-center bg-no-repeat min-h-[380px] sm:min-h-[460px] md:min-h-[500px] lg:min-h-[540px] flex flex-col justify-start items-center pt-8 sm:pt-12 md:pt-14 pb-16"
+  style={`background-image: url('${t.image || "/images/home/banner-children.png"}'); background-color: #FBBF24;`}
+>
+  <!-- Texto Superpuesto Centrado (Único Elemento Dinámico y Traducible) -->
+  <div class="relative z-10 max-w-4xl mx-auto px-4 text-center select-none">
+    <h2
+      class="text-3xl sm:text-5xl md:text-6xl lg:text-[64px] font-black uppercase tracking-tight leading-[1.05] drop-shadow-[0_2px_8px_rgba(0,0,0,0.18)]"
+    >
+      <span class="text-white block sm:inline">{t.titleLine1}</span>{" "}
+      <span
+        class="text-[#FFE200] block sm:inline drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)]"
+        >{t.titleHighlight}</span
+      >
+    </h2>
+  </div>
+
+  <!-- Nubes troqueladas de remate inferior opcional para integración armónica -->
+  <div
+    class="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-10 pointer-events-none"
+  >
+    <svg
+      class="relative block w-full h-8 sm:h-12 text-[#FFFBF2]"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M0,40 C150,90 350,10 500,60 C650,110 900,20 1200,50 L1200,120 L0,120 Z"
+        fill="currentColor"></path>
+    </svg>
+  </div>
+</section>

@@ -18,13 +18,13 @@ interface Props {
 const {
 	title,
 	lang,
-	description = "Autroui.",
+	description = "Girafkids® - Suplementos infantiles de grado pediátrico en formato líquido para el cuidado y defensas de tus pequeños.",
 	image = "/icon.png",
 	schema,
 	canonicalPath,
 } = Astro.props;
 
-const baseUrl = "https://autroui.com";
+const baseUrl = "https://girafkids.com";
 
 const baseRoute =
 	canonicalPath !== undefined
@@ -47,16 +47,28 @@ const defaultLink = new URL(`/es${cleanRoute ? `/${cleanRoute}` : ""}`, baseUrl)
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="theme-color" content="#ffffff" />
+		<meta name="theme-color" content="#E85D04" />
 		<link rel="icon" type="image/png" href="/icon.png" />
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<meta name="robots" content="index, follow" />
+		<script
+			defer
+			src="https://cloud.umami.is/script.js"
+			data-website-id="54c1f19f-cf67-4430-85bf-985e16a7a95a"></script>
+
+		<!-- Google Fonts: Sour Gummy -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
 
 		<link rel="canonical" href={canonicalURL} />
 		{
@@ -68,7 +80,7 @@ const defaultLink = new URL(`/es${cleanRoute ? `/${cleanRoute}` : ""}`, baseUrl)
 
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={canonicalURL} />
-		<meta property="og:site_name" content="Asyncronix" />
+		<meta property="og:site_name" content="Girafkids" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={socialImageURL} />
@@ -82,8 +94,8 @@ const defaultLink = new URL(`/es${cleanRoute ? `/${cleanRoute}` : ""}`, baseUrl)
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={socialImageURL} />
 
-		<meta name="apple-mobile-web-app-title" content="Dolex USA" />
-		<meta name="application-name" content="Dolex USA" />
+		<meta name="apple-mobile-web-app-title" content="Girafkids" />
+		<meta name="application-name" content="Girafkids" />
 		<ClientRouter />
 
 		{
@@ -96,7 +108,7 @@ const defaultLink = new URL(`/es${cleanRoute ? `/${cleanRoute}` : ""}`, baseUrl)
 		}
 	</head>
 	<body
-		class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-50 antialiased min-h-screen flex flex-col transition-colors duration-300"
+		class="bg-[#FFFBF2] text-[#694A38] antialiased min-h-screen flex flex-col font-sans selection:bg-[#FDBA2A] selection:text-[#7C2D12]"
 	>
 		<Navbar lang={lang} />
 		<main class="flex-1">
@@ -112,6 +124,6 @@ const defaultLink = new URL(`/es${cleanRoute ? `/${cleanRoute}` : ""}`, baseUrl)
 	}
 	::view-transition-old(root),
 	::view-transition-new(root) {
-		animation-duration: 0.4s;
+		animation-duration: 0.3s;
 	}
 </style>
