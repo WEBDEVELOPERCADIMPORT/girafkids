@@ -114,20 +114,10 @@ const t = (homeContent[lang] ?? homeContent.es).productShowcase;
                   </a>
                 </h3>
 
-                <!-- Descripción con Ver más / Ver menos -->
-                <div class="product-desc-wrapper mb-6">
-                  <p class="product-desc-text text-xs sm:text-sm text-[#694A38] leading-relaxed line-clamp-2 transition-all">
-                    {product.description}
-                  </p>
-                  <button
-                    type="button"
-                    class="desc-toggle-btn text-xs font-bold text-[#EA580C] hover:text-[#C2410C] hover:underline mt-1 focus:outline-none transition-colors inline-flex items-center gap-1 cursor-pointer"
-                    data-more={t.seeMore}
-                    data-less={t.seeLess}
-                  >
-                    <span>{t.seeMore}</span>
-                  </button>
-                </div>
+                <!-- Descripción del Producto -->
+                <p class="text-xs sm:text-sm text-[#694A38] leading-relaxed line-clamp-3 mb-6">
+                  {product.description}
+                </p>
               </div>
 
               <!-- Botones Idénticos a la Imagen de Referencia -->
@@ -241,25 +231,6 @@ const t = (homeContent[lang] ?? homeContent.es).productShowcase;
           e.preventDefault();
           e.stopPropagation();
           updateImage(currentIndex + 1);
-        });
-      });
-
-      // 3. Toggle de descripción Ver más / Ver menos
-      const descWrappers = container.querySelectorAll(".product-desc-wrapper");
-      descWrappers.forEach((wrapper) => {
-        const text = wrapper.querySelector(".product-desc-text");
-        const btn = wrapper.querySelector(".desc-toggle-btn");
-        const span = btn?.querySelector("span");
-
-        if (!text || !btn || !span) return;
-
-        btn.addEventListener("click", (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          const isClamped = text.classList.toggle("line-clamp-2");
-          span.textContent = isClamped
-            ? (btn.getAttribute("data-more") || "Ver más")
-            : (btn.getAttribute("data-less") || "Ver menos");
         });
       });
     });
